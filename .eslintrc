@@ -1,0 +1,12 @@
+{
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "parser": "babel-eslint",
+  "plugins": ["prettier", "@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/consistent-type-definitions": "off"
+  }
+}
