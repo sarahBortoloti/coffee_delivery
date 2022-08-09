@@ -10,4 +10,15 @@ export const fonts = {
     font32: "2.0rem",
     font48: "3.0rem",
   },
+
+  weight: {
+    regular: 400,
+    bold: 700,
+    extraBold: 800,
+  },
+
+  lineHeight: {
+    lineHeight130: "130%",
+    lineHeight160: "160%",
+  },
 };

@@ -3,8 +3,8 @@ export const colors = {
     yellowLight: "#F1E9C9",
     yellow: "#DBAC2C",
     yellowDark: "#C47F17",
-    purpleLight: "#EB25F9",
-    purple: "#8047FB",
+    purpleLight: "#EBE5F9",
+    purple: "#8047F8",
     purpleDark: "#4B2995",
   },
 
