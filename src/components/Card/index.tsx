@@ -1,10 +1,7 @@
 import { ContentTotal, Price, StyledButton, StyledCard, StyledFlex, Tag } from "./styles";
-import React from "react";
 import coffee1 from "../../assets/Image-1.svg"
 import { Box, Flex } from "rebass";
-import { Title } from "../Title";
-import { Text } from "../Text";
-import { Button, variantsOfButton } from "../Button";
+import { Button, Text, Title } from "../index";
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { colors } from "../../styles/colors";
 

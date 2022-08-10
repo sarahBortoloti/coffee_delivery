@@ -2,13 +2,13 @@ import { MapPin, ShoppingCart } from 'phosphor-react';
 import { Flex } from 'rebass';
 import { colors } from '../../styles/colors';
 import logoCoffee from "../../assets/logo.svg";
-import { Button } from '../Button';
+import { Button } from '../index';
 import { Container, LabelLocalization } from './styles';
 
 
 export const Header = () => {
   return (
-    <Flex justifyContent="space-around" alignItems="center" my={32}>
+    <Flex justifyContent="space-between" alignItems="center" my={32} width={1}>
       <img alt="logo" src={logoCoffee} />
       <Container>
         <LabelLocalization>
@@ -23,6 +23,6 @@ export const Header = () => {
           />
         </Button>
       </Container>
-    </Flex >
+    </Flex>
   )
 }
