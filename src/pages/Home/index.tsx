@@ -1,14 +1,11 @@
-import { ContainerInfo } from "./styles";
-import coffee from "../../assets/Coffee_banner.svg";
+import { ContainerCard, ContainerInfo } from "./styles";
+import coffee from "../../assets/banner/Coffee_banner.svg";
 import { Flex, Box } from "rebass";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { colors } from "../../styles/colors";
 import { Icon } from "../../components";
 import { Card, Text, Title } from "../../components/index";
-
-const TITLE = "Encontre o café perfeito para qualquer hora do dia";
-const SUBTITLE =
-  "Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora";
+import { menuItems, SUBTITLE, TITLE } from "./constants";
 
 const items = [
   {
@@ -41,15 +38,17 @@ export const Home = () => {
           <Title title={TITLE} subtitle={SUBTITLE} />
 
           <Flex mx={-2} flexWrap="wrap" width={1}>
-            {items.map(({ icon, text, backgroundColor }) => {
+            {items.map(({ icon, text, backgroundColor }, index) => {
               return (
                 <ContainerInfo
                   width={1 / 2}
                   marginBottom={20}
                   alignItems="center"
+                  key={index}
+
                 >
-                  <Icon backgroundColor={backgroundColor}>{icon}</Icon>
-                  <Text>{text}</Text>
+                  <Icon key={text} backgroundColor={backgroundColor}>{icon}</Icon>
+                  <Text key={`${text} ${index}`}>{text}</Text>
                 </ContainerInfo>
               );
             })}
@@ -59,9 +58,14 @@ export const Home = () => {
           <img src={coffee} />
         </Box>
       </Flex>
-      <Flex justifyContent="center">
-        {/* <Title title="Nossos cafés" fontSizeTitle="32px" /> */}
-        <Card />
+      <Flex mt={86} flexDirection="column" alignItems="flex-start" width={1}>
+        <Title title="Nossos cafés" fontSizeTitle="32px" />
+
+        <ContainerCard flexWrap="wrap" mt={34}>
+          {menuItems.map((item, index) => {
+            return <Card key={`${item}${index}`} product={item} />;
+          })}
+        </ContainerCard>
       </Flex>
     </>
   );

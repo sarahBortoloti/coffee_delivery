@@ -8,6 +8,7 @@ export const StyledCard = styled(Flex)`
     border-radius: 6px 36px;
     width: 256px;
     height: 310px;
+    margin-bottom: 40px;
   `}
 `;
 
@@ -49,9 +50,8 @@ export const StyledButton = styled(Button)`
 export const Price = styled.div`
   ${({ theme }) => css`
     font-family: "Baloo 2";
-    font-weight: ${theme.fonts.weight.extraBold}
-    font-size: ${theme.fonts.sizes.font24}
-    margin-right: 27px;
+    font-weight: ${theme.fonts.weight.extraBold};
+    font-size: ${theme.fonts.sizes.font24};
   `};
 
   &::before {
@@ -64,4 +64,8 @@ export const Price = styled.div`
 
 export const StyledFlex = styled(Flex)`
   column-gap: 8px;
+`;
+
+export const ContainerTag = styled(Flex)`
+  column-gap: 4px;
 `;

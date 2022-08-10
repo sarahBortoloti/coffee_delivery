@@ -1,4 +1,4 @@
-import React from "react"
+import React, { MouseEventHandler } from "react"
 import * as Styled from "./styles"
 
 export enum variantsOfButton {
@@ -9,14 +9,14 @@ export enum variantsOfButton {
 export type ButtonProps = {
   variant?: variantsOfButton
   children: React.ReactNode,
-  onClick?: React.MouseEvent<HTMLElement>,
+  onClick?: MouseEventHandler<HTMLButtonElement>,
   backgroundColor?: string,
   color?: string,
 }
 
 export const Button = ({ children, onClick, ...props }: ButtonProps) => {
   return (
-    <Styled.Button {...props}>
+    <Styled.Button onClick={onClick}  {...props}>
       {children}
     </Styled.Button>
   )
