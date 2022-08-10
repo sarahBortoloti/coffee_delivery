@@ -1,9 +1,8 @@
-import { ContainerCard, ContainerInfo } from "./styles";
 import coffee from "../../assets/banner/Coffee_banner.svg";
-import { Flex, Box } from "rebass";
+import { Box } from "rebass";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { colors } from "../../styles/colors";
-import { Icon } from "../../components";
+import { Flex, Icon } from "../../components";
 import { Card, Text, Title } from "../../components/index";
 import { menuItems, SUBTITLE, TITLE } from "./constants";
 
@@ -40,16 +39,16 @@ export const Home = () => {
           <Flex mx={-2} flexWrap="wrap" width={1}>
             {items.map(({ icon, text, backgroundColor }, index) => {
               return (
-                <ContainerInfo
+                <Flex
                   width={1 / 2}
                   marginBottom={20}
                   alignItems="center"
                   key={index}
-
+                  gapColumn="12px"
                 >
                   <Icon key={text} backgroundColor={backgroundColor}>{icon}</Icon>
                   <Text key={`${text} ${index}`}>{text}</Text>
-                </ContainerInfo>
+                </Flex>
               );
             })}
           </Flex>
@@ -61,11 +60,11 @@ export const Home = () => {
       <Flex mt={86} flexDirection="column" alignItems="flex-start" width={1}>
         <Title title="Nossos cafés" fontSizeTitle="32px" />
 
-        <ContainerCard flexWrap="wrap" mt={34}>
+        <Flex flexWrap="wrap" mt={34} gapColumn="32px">
           {menuItems.map((item, index) => {
             return <Card key={`${item}${index}`} product={item} />;
           })}
-        </ContainerCard>
+        </Flex>
       </Flex>
     </>
   );

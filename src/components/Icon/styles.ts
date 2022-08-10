@@ -1,11 +1,12 @@
 import { colors } from "./../../styles/colors";
 import { IconProps } from "./index";
 import styled from "styled-components";
+import { Flex } from "rebass";
 
-export const StyledIcon = styled.div<IconProps>`
+export const StyledIcon = styled(Flex)<IconProps>`
   border-radius: 1000px;
-  width: ${({ width }) => width || "32px"};
-  height: ${({ height }) => height || "32px"};
+  width: ${({ width }) => width || "2rem"};
+  height: ${({ height }) => height || "2rem"};
   background-color: ${({ backgroundColor }) =>
     backgroundColor || colors.base.button};
   display: flex;

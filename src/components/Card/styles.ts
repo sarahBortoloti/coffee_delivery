@@ -6,8 +6,8 @@ export const StyledCard = styled(Flex)`
   ${({ theme }) => css`
     background-color: ${theme.colors.base.card};
     border-radius: 6px 36px;
-    width: 256px;
-    height: 310px;
+    width: 16rem;
+    height: 19.4rem;
     margin-bottom: 40px;
   `}
 `;
@@ -15,16 +15,15 @@ export const StyledCard = styled(Flex)`
 export const Tag = styled(Flex)`
   ${({ theme }) => css`
     border-radius: 100px;
-    height: 20px;
+    height: 1.25rem;
 
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
 
     background-color: ${theme.colors.brand.yellowLight};
     font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 10px;
-    line-height: 130%;
+    font-weight: ${theme.fonts.weight.bold};
+    font-size: ${theme.fonts.sizes.font10};
+    line-height: ${theme.fonts.lineHeight.lineHeight130};
 
     text-transform: uppercase;
 
@@ -60,12 +59,4 @@ export const Price = styled.div`
     font-size: 14px;
     font-weight: normal;
   }
-`;
-
-export const StyledFlex = styled(Flex)`
-  column-gap: 8px;
-`;
-
-export const ContainerTag = styled(Flex)`
-  column-gap: 4px;
 `;

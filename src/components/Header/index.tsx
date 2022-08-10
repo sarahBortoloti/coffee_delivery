@@ -1,16 +1,15 @@
 import { MapPin, ShoppingCart } from 'phosphor-react';
-import { Flex } from 'rebass';
 import { colors } from '../../styles/colors';
 import logoCoffee from "../../assets/logo.svg";
-import { Button } from '../index';
-import { Container, LabelLocalization } from './styles';
+import { Button, Flex } from '../index';
+import { LabelLocalization } from './styles';
 
 
 export const Header = () => {
   return (
     <Flex justifyContent="space-between" alignItems="center" my={32} width={1}>
       <img alt="logo" src={logoCoffee} />
-      <Container>
+      <Flex gap="0.75rem">
         <LabelLocalization>
           <MapPin size={16} weight="fill" color={colors.brand.purple} />
           Porto alegre-RS
@@ -22,7 +21,7 @@ export const Header = () => {
             color={colors.brand.yellowDark}
           />
         </Button>
-      </Container>
+      </Flex >
     </Flex>
   )
 }

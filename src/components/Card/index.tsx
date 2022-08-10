@@ -1,19 +1,15 @@
 import {
-  ContainerTag,
   ContentTotal,
   Price,
   StyledButton,
   StyledCard,
-  StyledFlex,
   Tag,
 } from "./styles";
-import coffee1 from "../../assets/Image-1.svg";
-import { Box, Flex } from "rebass";
-import { Button, Text, Title } from "../index";
+import { Box } from "rebass";
+import { Button, Flex, Text, Title } from "../index";
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { colors } from "../../styles/colors";
-import { useEffect, useState } from "react";
-import usePrevious from "../../hooks/usePrevious";
+import { useState } from "react";
 
 type CoffeeProps = {
   tags: string[];
@@ -33,44 +29,34 @@ export const Card = ({ product }: CardProps) => {
 
   const handleAddMore = () => {
     setTotal((state) => state + 1);
+    setPrice((state) => state + product.price)
   };
 
   const handleSubtractTotal = () => {
     if (total > 0) {
       setTotal((state) => state - 1);
+      setPrice((state) => state - product.price);
     }
   };
 
-  const prevTotal = usePrevious(total) || 0;
-
-  useEffect(() => {
-    if (total > prevTotal) {
-      setPrice((state) => state + product.price);
-    }
-
-    if (total < prevTotal) {
-      setPrice((state) => state - product.price);
-    }
-
-  }, [total, price]);
 
   const formattedPrice = () => {
     if (price > 0) {
       return `${Math.round((price + Number.EPSILON) * 100) / 100}0`;
     }
     return 0;
-  }
+  };
 
   return (
     <StyledCard flexDirection="column" alignItems="center">
       <Box mt={-20}>
         <img src={product.img} width="120px" height="120px" />
       </Box>
-      <ContainerTag mt={12} flexWrap="wrap" width={1} justifyContent="center">
+      <Flex mt={12} flexWrap="wrap" width={1} justifyContent="center" gapColumn="4px">
         {product.tags.map((tag) => {
           return <Tag key={tag}>{tag}</Tag>;
         })}
-      </ContainerTag>
+      </Flex>
 
       <Title title={product.title} fontSizeTitle="20px" />
       <Box mx={20} mt={-2} textAlign="center">
@@ -78,9 +64,9 @@ export const Card = ({ product }: CardProps) => {
           {product.description}
         </Text>
       </Box>
-      <StyledFlex alignItems="center" mt={32} mr={12}>
+      <Flex alignItems="center" mt={32} mr={12}>
         <Price>{formattedPrice()}</Price>
-        <StyledFlex>
+        <Flex gapColumn="8px">
           <ContentTotal
             backgroundColor={colors.base.button}
             alignItems="center"
@@ -98,8 +84,8 @@ export const Card = ({ product }: CardProps) => {
           <Button backgroundColor={colors.brand.purpleDark}>
             <ShoppingCart size={20} weight="fill" color={colors.base.white} />
           </Button>
-        </StyledFlex>
-      </StyledFlex>
+        </Flex>
+      </Flex>
     </StyledCard>
   );
 };

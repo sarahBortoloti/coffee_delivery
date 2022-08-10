@@ -1,4 +1,3 @@
-import { Flex } from "rebass";
 import styled, { css } from "styled-components";
 
 export const LabelLocalization = styled.label`
@@ -15,8 +14,4 @@ export const LabelLocalization = styled.label`
     font-weight: ${theme.fonts.weight.regular};
     border-radius: 6px;
   `}
-`;
-
-export const Container = styled(Flex)`
-  gap: 0.75rem;
 `;

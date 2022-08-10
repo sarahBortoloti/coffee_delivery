@@ -18,7 +18,7 @@ export const StyledSubtitle = styled.h6`
     font-size: ${theme.fonts.sizes.font20};
     font-weight: ${theme.fonts.weight.regular};
     margin-top: 0;
-    font-weight: 400;
+    font-weight: ${theme.fonts.weight.regular};
     line-height: ${theme.fonts.lineHeight.lineHeight130};
     color: ${theme.colors.base.subtitle}; ;
   `}
