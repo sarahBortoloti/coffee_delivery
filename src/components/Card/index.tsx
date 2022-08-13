@@ -64,9 +64,9 @@ export const Card = ({ product }: CardProps) => {
           {product.description}
         </Text>
       </Box>
-      <Flex alignItems="center" mt={32} mr={12}>
+      <Flex gapColumn="1rem" alignItems="center" mt={32} mr={12}>
         <Price>{formattedPrice()}</Price>
-        <Flex gapColumn="8px">
+        <Flex gapColumn="0.5rem">
           <ContentTotal
             backgroundColor={colors.base.button}
             alignItems="center"

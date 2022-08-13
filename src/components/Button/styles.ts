@@ -19,5 +19,8 @@ export const Button = styled.button<ButtonProps>`
 
   color: ${({ color }) => color};
 
+  padding: ${({ padding }) => padding};
+  width: ${({ width }) => width};
+
   ${({ variant }) => variant && getButtonVariant(variant)};
 `;

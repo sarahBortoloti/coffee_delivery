@@ -12,10 +12,7 @@ export const Page = ({ children }: PageProps) => {
 
   return (
     <Flex alignItems="center" justifyContent="center" marginBottom={80}>
-
       <Container>
-        <Header />
-
         {children}
       </Container>
     </Flex>

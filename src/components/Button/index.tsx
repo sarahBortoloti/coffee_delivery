@@ -12,6 +12,9 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>,
   backgroundColor?: string,
   color?: string,
+  padding?: string,
+  width?: string,
+  height?: string,
 }
 
 export const Button = ({ children, onClick, ...props }: ButtonProps) => {

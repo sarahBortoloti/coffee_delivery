@@ -5,6 +5,7 @@ import { StyledText } from "./styles"
 export type StyledTextProps = {
   fontSizeText?: number | string;
   color?: string;
+  fontWeight?: string;
 }
 
 type TextProps = StyledTextProps & {
