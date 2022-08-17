@@ -1,5 +1,5 @@
+export { BtnCounter } from "./BtnCounter";
 export { Button } from "./Button";
-export { Card } from "./Card";
 export { Flex } from "./Flex";
 export { Header } from "./Header";
 export { Icon } from "./Icon";

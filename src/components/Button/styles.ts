@@ -12,15 +12,16 @@ export const Button = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  gap: 1rem;
+  gap: 0.5rem;
   background-color: ${({ backgroundColor }) =>
     backgroundColor && backgroundColor};
   border: none;
-
+  text-transform: uppercase;
   color: ${({ color }) => color};
 
   padding: ${({ padding }) => padding};
   width: ${({ width }) => width};
+  height: ${({ height }) => height};
 
   ${({ variant }) => variant && getButtonVariant(variant)};
 `;

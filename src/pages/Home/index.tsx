@@ -3,8 +3,11 @@ import { Box } from "rebass";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { colors } from "../../styles/colors";
 import { Flex, Icon } from "../../components";
-import { Card, Text, Title } from "../../components/index";
+import { Text, Title } from "../../components/index";
 import { menuItems, SUBTITLE, TITLE } from "./constants";
+import { useContext } from "react";
+import { ContextCoffee } from "../../context";
+import { Card } from "./components/Card";
 
 const items = [
   {
@@ -30,6 +33,11 @@ const items = [
 ];
 
 export const Home = () => {
+
+
+  const { orderedCoffees } =
+    useContext(ContextCoffee);
+
   return (
     <>
       <Flex justifyContent="center" mt={72}>

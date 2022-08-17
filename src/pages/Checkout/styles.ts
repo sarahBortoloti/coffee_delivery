@@ -11,11 +11,6 @@ export const Card = styled(Flex)`
   `}
 `;
 
-export const CardProducts = styled(Card)`
-  width: 448px;
-  border-radius: 6px 44px;
-`;
-
 export const ContentIcon = styled.span`
   margin-right: 8px;
 `;

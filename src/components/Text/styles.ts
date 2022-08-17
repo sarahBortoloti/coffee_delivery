@@ -8,6 +8,5 @@ export const StyledText = styled.span<StyledTextProps>`
     font-size: ${fontSizeText || theme.fonts.sizes.font16};
     font-weight: ${fontWeight || theme.fonts.weight.regular};
     line-height: ${theme.fonts.lineHeight.lineHeight130};
-    margin-top: 0.25rem;
   `}
 `;

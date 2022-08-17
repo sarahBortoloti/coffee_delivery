@@ -1,6 +1,5 @@
 import { Flex } from "rebass";
 import styled, { css } from "styled-components";
-import { Button } from "../Button";
 
 export const StyledCard = styled(Flex)`
   ${({ theme }) => css`
@@ -29,21 +28,6 @@ export const Tag = styled(Flex)`
 
     color: ${theme.colors.brand.yellowDark};
   `}
-`;
-
-export const ContentTotal = styled(Flex)`
-  border-radius: 6px;
-  height: 38px;
-`;
-
-export const StyledButton = styled(Button)`
-  ${({ theme }) => css`
-    background-color: ${theme.colors.base.button};
-  `};
-
-  &:hover {
-    background-color: "transparent";
-  }
 `;
 
 export const Price = styled.div`
