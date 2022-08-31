@@ -4,7 +4,7 @@ import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { colors } from "../../styles/colors";
 import { Flex, Icon } from "../../components";
 import { Text, Title } from "../../components/index";
-import { menuItems, SUBTITLE, TITLE } from "./constants";
+import { SUBTITLE, TITLE } from "./constants";
 import { useContext } from "react";
 import { ContextCoffee } from "../../context";
 import { Card } from "./components/Card";
@@ -33,10 +33,7 @@ const items = [
 ];
 
 export const Home = () => {
-
-
-  const { orderedCoffees } =
-    useContext(ContextCoffee);
+  const { coffees } = useContext(ContextCoffee);
 
   return (
     <>
@@ -54,7 +51,9 @@ export const Home = () => {
                   key={index}
                   gapColumn="12px"
                 >
-                  <Icon key={text} backgroundColor={backgroundColor}>{icon}</Icon>
+                  <Icon key={text} backgroundColor={backgroundColor}>
+                    {icon}
+                  </Icon>
                   <Text key={`${text} ${index}`}>{text}</Text>
                 </Flex>
               );
@@ -69,7 +68,7 @@ export const Home = () => {
         <Title title="Nossos cafés" fontSizeTitle="32px" />
 
         <Flex flexWrap="wrap" mt={34} gapColumn="32px">
-          {menuItems.map((item, index) => {
+          {coffees.map((item, index) => {
             return <Card key={`${item}${index}`} product={item} />;
           })}
         </Flex>

@@ -4,58 +4,26 @@ import {
   Tag,
 } from "./styles";
 import { Box, Button } from "rebass";
-import { Minus, Plus, ShoppingCart } from "phosphor-react";
-import { useState, useContext } from "react";
+import { ShoppingCart } from "phosphor-react";
 import { Title, Flex, Text } from "../../../../components";
-import { ContextCoffee } from "../../../../context";
 import { colors } from "../../../../styles";
 import { BtnCounter } from "../../../../components/BtnCounter";
+import { CoffeeProps } from "../../../../types/coffee";
 
-
-type CoffeeProps = {
-  tags: string[];
-  title: string;
-  price: number;
-  description: string;
-  img: string;
-};
 
 type CardProps = {
   product: CoffeeProps;
 };
 
 export const Card = ({ product }: CardProps) => {
-  const [total, setTotal] = useState(0);
-  const [price, setPrice] = useState(0);
-
-  const { addNewOrderedCoffee, removeOrderedCoffee } =
-    useContext(ContextCoffee);
-
-  const handleAddMore = () => {
-    setTotal((state) => state + 1);
-    setPrice((state) => state + product.price)
-    if (addNewOrderedCoffee) {
-      addNewOrderedCoffee(product);
-    }
-  };
-
-  const handleSubtractTotal = () => {
-    if (total > 0) {
-      setTotal((state) => state - 1);
-      setPrice((state) => state - product.price);
-
-      if (removeOrderedCoffee) {
-        removeOrderedCoffee(product);
-      }
-    }
-  };
 
 
   const formattedPrice = () => {
-    if (price > 0) {
-      return `${Math.round((price + Number.EPSILON) * 100) / 100}0`;
+    if (product.price > 0 && !product.newPrice) {
+      return product.price.toFixed(2);
+    } else {
+      return product.newPrice?.toFixed(2);
     }
-    return 0;
   };
 
   return (
@@ -78,7 +46,7 @@ export const Card = ({ product }: CardProps) => {
       <Flex gapColumn="1rem" alignItems="center" mt={32} mr={12}>
         <Price>{formattedPrice()}</Price>
         <Flex gapColumn="0.5rem">
-          <BtnCounter total={total} handleSubtractTotal={handleSubtractTotal} handleAddMore={handleAddMore} />
+          <BtnCounter product={product} />
           <Button backgroundColor={colors.brand.purpleDark}>
             <ShoppingCart size={20} weight="fill" color={colors.base.white} />
           </Button>

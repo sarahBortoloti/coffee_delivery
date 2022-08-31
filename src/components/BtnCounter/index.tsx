@@ -1,32 +1,41 @@
-import { Minus, Plus } from "phosphor-react"
-import { colors } from "../../styles"
-import { ContentTotal, StyledButton } from "./styles"
-import { Text } from '../Text';
+import { Minus, Plus } from "phosphor-react";
+import { colors } from "../../styles";
+import { ContentTotal, StyledButton } from "./styles";
+import { Text } from "../Text";
+import { useContext } from "react";
+import { ContextCoffee } from "../../context";
 
-
-
-type BtnCounterProps = {
-  total?: number;
-  handleSubtractTotal?: () => void;
-  handleAddMore?: () => void;
+type CoffeeProps = {
+  tags: string[];
+  title: string;
+  price: number;
+  description: string;
+  img: string;
+  total: number;
 };
 
+type BtnCounterProps = {
+  product: CoffeeProps;
+};
 
-export const BtnCounter = ({ total, handleSubtractTotal, handleAddMore }: BtnCounterProps) => {
+export const BtnCounter = ({ product }: BtnCounterProps) => {
+  const { handleAddMore, handleRemoveCoffee } = useContext(ContextCoffee);
+  const total = (product && product.total) || 0;
+
   return (
     <ContentTotal
       backgroundColor={colors.base.button}
       alignItems="center"
       justifyContent="space-around"
     >
-      <StyledButton>
+      <StyledButton onClick={() => handleRemoveCoffee(product)}>
         <Minus size={14} color={colors.brand.purple} weight="bold" />
       </StyledButton>
       <Text>{total}</Text>
 
-      <StyledButton>
+      <StyledButton onClick={() => handleAddMore(product)}>
         <Plus size={14} color={colors.brand.purple} weight="bold" />
       </StyledButton>
     </ContentTotal>
-  )
-}
+  );
+};

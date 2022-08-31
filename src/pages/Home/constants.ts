@@ -11,6 +11,7 @@ export const menuItems = [
     title: "Expresso Tradicional",
     description: "O tradicional café feito com água quente e grãos moídos",
     price: 9.9,
+    total: 0,
   },
   {
     img: menuSVG.americano,
@@ -18,6 +19,7 @@ export const menuItems = [
     title: "Expresso Americano",
     description: "Expresso diluído, menos intenso que o tradicional",
     price: 9.9,
+    total: 0,
   },
   {
     img: menuSVG.expresso_cremoso,
@@ -25,6 +27,7 @@ export const menuItems = [
     title: "Expresso Cremoso",
     description: "Café expresso tradicional com espuma cremosa",
     price: 10.5,
+    total: 0,
   },
   {
     img: menuSVG.cafe_gelado,
@@ -32,6 +35,7 @@ export const menuItems = [
     title: "Expresso Gelado",
     description: "Bebida preparada com café expresso e cubos de gelo",
     price: 10.9,
+    total: 0,
   },
   {
     img: menuSVG.cafe_com_leite,
@@ -39,6 +43,7 @@ export const menuItems = [
     title: "Café com Leite",
     description: "Meio a meio de expresso tradicional com leite vaporizado",
     price: 8.9,
+    total: 0,
   },
   {
     img: menuSVG.latte,
@@ -47,6 +52,7 @@ export const menuItems = [
     description:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
     price: 11.9,
+    total: 0,
   },
   {
     img: menuSVG.cappuccino,
@@ -55,6 +61,7 @@ export const menuItems = [
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
     price: 12.9,
+    total: 0,
   },
   {
     img: menuSVG.macchiato,
@@ -63,6 +70,7 @@ export const menuItems = [
     description:
       "Café expresso misturado com um pouco de leite quente e espuma",
     price: 12.9,
+    total: 0,
   },
   {
     img: menuSVG.mochaccino,
@@ -70,6 +78,7 @@ export const menuItems = [
     title: "Mocaccino",
     description: "Café expresso com calda de chocolate, pouco leite e espuma",
     price: 12.9,
+    total: 0,
   },
   {
     img: menuSVG.chocolate_quente,
@@ -77,6 +86,7 @@ export const menuItems = [
     title: "Chocolate Quente",
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
     price: 7.5,
+    total: 0,
   },
   {
     img: menuSVG.cubano,
@@ -85,6 +95,7 @@ export const menuItems = [
     description:
       "Drink gelado de café expresso com rum, creme de leite e hortelã",
     price: 17.1,
+    total: 0,
   },
   {
     img: menuSVG.havaiano,
@@ -92,6 +103,7 @@ export const menuItems = [
     title: "Havaiano",
     description: "Bebida adocicada preparada com café e leite de coco",
     price: 11.9,
+    total: 0,
   },
   {
     img: menuSVG.arabe,
@@ -99,6 +111,7 @@ export const menuItems = [
     title: "Árabe",
     description: "Bebida preparada com grãos de café árabe e especiarias",
     price: 15.1,
+    total: 0,
   },
   {
     img: menuSVG.irlandes,
@@ -106,5 +119,6 @@ export const menuItems = [
     title: "Irlandês",
     description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
     price: 17.1,
+    total: 0,
   },
 ];

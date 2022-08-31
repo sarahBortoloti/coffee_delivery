@@ -12,6 +12,7 @@ export const StyledButton = styled(Button)`
     background-color: ${theme.colors.base.button};
     box-sizing: border-box;
     padding: 8px;
+    cursor: pointer;
   `};
 
   &:hover {

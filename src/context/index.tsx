@@ -1,24 +1,13 @@
-// Qual café foi selecionado
-// Quantos foram selecionados
-// Conseguir selecionar e remover em outra tela
+import { createContext, ReactNode, useState } from "react";
+import { menuItems } from "../pages/Home/constants";
+import { CoffeeProps } from "../types/coffee";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
-
-type CoffeeProps = {
-  tags: string[];
-  title: string;
-  price: number;
-  totalItems?: number;
-  description: string;
-  img: string;
-};
 
 type ContextCoffeeProps = {
-  orderedCoffees?: CoffeeProps[];
-  addNewOrderedCoffee?: (coffee: CoffeeProps) => void;
-  removeOrderedCoffee?: (coffee: CoffeeProps) => void;
+  coffees: CoffeeProps[];
   totalOfOcurrencies?: {};
-
+  handleAddMore: (coffee: CoffeeProps) => void;
+  handleRemoveCoffee: (coffee: CoffeeProps) => void;
 };
 
 interface ContextCoffeeProviderProps {
@@ -31,58 +20,65 @@ export const ContextCoffeeProvider = ({
   children,
 }: ContextCoffeeProviderProps) => {
 
-  const [orderedCoffees, setOrderedCoffees] = useState<CoffeeProps[]>([]);
-  // const [totalOfOcurrencies, setTotalOfOcurrencies] = useState({});
+  const [coffees, setCoffees] = useState<CoffeeProps[]>(menuItems);
 
-  // const getTotalOccurrences = (temp: any[]) => {
-  //   const filteredObject = temp.reduce((acc: any, curr: any) => {
-  //     acc[curr.title] ? ++acc[curr.title] : acc[curr.title] = 1, acc
-  //     return acc;
-  //   }, {});
-  //   return filteredObject;
-  // }
+  const [total, setTotal] = useState(0);
 
+  const getIndexOfCoffee = (coffees: CoffeeProps[], title: string) => coffees.findIndex(coffee => coffee.title === title);
 
-  const addNewOrderedCoffee = (item: CoffeeProps) => {
-    const temp = [...orderedCoffees, item];
-    // if (temp) {
-    //   const getTotal = getTotalOccurrences(temp);
-    //   setTotalOfOcurrencies(temp);
-    // }
+  const updateTotal = (product: CoffeeProps, total: number) => {
+    setCoffees(prevState => {
+      let data = [...prevState];
+      let indexOfCoffee = getIndexOfCoffee(data, product.title);
 
-    setOrderedCoffees((prevState) => {
+      const newPrice = product.price * total;
 
-      return [...prevState, item];
+      data[indexOfCoffee] = {
+        ...data[indexOfCoffee],
+        total: total,
+        newPrice: parseFloat(newPrice.toFixed(2)),
+      }
+
+      return data;
     });
-  };
+
+    setTotal(0);
+  }
+
+  //to-do: add use reducer
+  const handleAddMore = (product: CoffeeProps) => {
+    setTotal(product.total);
+    setTotal((state) => {
+      const newTotal = state + 1;
+
+      updateTotal(product, newTotal);
+      return newTotal;
+    });
+
+  }
 
 
-  useEffect(() => {
-    if (orderedCoffees) {
-      const temp = [...orderedCoffees];
-      // const getTotal = getTotalOccurrences(temp);
-      // setTotalOfOcurrencies(getTotal);
-    }
-  }, [orderedCoffees]);
+  const handleRemoveCoffee = (product: CoffeeProps) => {
+    setTotal(product.total);
+    setTotal((state) => {
+      if (state > 0) {
+        const newTotal = state - 1;
 
+        updateTotal(product, newTotal);
+        return newTotal;
+      }
 
-  const removeOrderedCoffee = (item: CoffeeProps) => {
-    const temp = [...orderedCoffees];
-    const index = temp.indexOf(item);
-    if (index > -1) {
-      temp.splice(index, 1);
-      setOrderedCoffees(temp);
-    }
+      return 0;
+    });
   }
 
 
   return (
     <ContextCoffee.Provider
       value={{
-        orderedCoffees,
-        addNewOrderedCoffee,
-        removeOrderedCoffee,
-        // totalOfOcurrencies,
+        coffees,
+        handleAddMore,
+        handleRemoveCoffee
       }}
     >
       {children}
