@@ -1,13 +1,15 @@
 import { createContext, ReactNode, useState } from "react";
+import { AddressProps } from "../pages/Checkout/components/Form";
 import { menuItems } from "../pages/Home/constants";
 import { CoffeeProps } from "../types/coffee";
-
 
 type ContextCoffeeProps = {
   coffees: CoffeeProps[];
   totalOfOcurrencies?: {};
   handleAddMore: (coffee: CoffeeProps) => void;
   handleRemoveCoffee: (coffee: CoffeeProps) => void;
+  setFinalOrder: (order: any) => void;
+  finalOrder: any;
 };
 
 interface ContextCoffeeProviderProps {
@@ -21,6 +23,7 @@ export const ContextCoffeeProvider = ({
 }: ContextCoffeeProviderProps) => {
 
   const [coffees, setCoffees] = useState<CoffeeProps[]>(menuItems);
+  const [finalOrder, setFinalOrder] = useState<any>();
 
   const [total, setTotal] = useState(0);
 
@@ -72,13 +75,14 @@ export const ContextCoffeeProvider = ({
     });
   }
 
-
   return (
     <ContextCoffee.Provider
       value={{
         coffees,
         handleAddMore,
-        handleRemoveCoffee
+        handleRemoveCoffee,
+        setFinalOrder,
+        finalOrder,
       }}
     >
       {children}

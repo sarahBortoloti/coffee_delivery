@@ -4,29 +4,90 @@ import {
   Money,
   MapPinLine,
   CurrencyDollar,
-  Minus,
-  Plus,
-  Trash,
 } from "phosphor-react";
 import { Box } from "rebass";
-import { Flex, Input, Text, Button } from "../../components";
+import { Flex, Text, Button } from "../../components";
 import { variantsOfButton } from "../../components/Button";
 import { colors } from "../../styles";
-import { Card, ContainerShop, ContentIcon } from "./styles";
-import { menuSVG } from "./../../assets/menu/index";
-import { useContext } from "react";
+import { Card, ContentIcon } from "./styles";
+import { useContext, useState } from "react";
 import { ContextCoffee } from "../../context";
-import { FormContent } from "./components/Form";
-import { ContentTotal, StyledButton } from "../../components/BtnCounter/styles";
-import { BtnCounter } from "../../components/BtnCounter";
+import { AddressProps, FormContent } from "./components/Form";
 import { CardProducts } from "./components/CardProducts";
+import { isEmpty } from "ramda";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 export const Checkout = () => {
+  const form = useForm<AddressProps>({
+    mode: "onBlur",
+    defaultValues: {
+      cep: "",
+      rua: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      uf: "",
+    },
+  });
+  const { coffees, setFinalOrder } = useContext(ContextCoffee);
+  const navigate = useNavigate();
 
-  // const { orderedCoffees, totalOfOcurrencies } =
-  //   useContext(ContextCoffee);
+  const { watch } = form;
+  const [cep, rua, numero, complemento, bairro, cidade, uf] = watch([
+    "cep",
+    "rua",
+    "numero",
+    "complemento",
+    "bairro",
+    "cidade",
+    "uf",
+  ]);
 
-  // console.log(orderedCoffees, totalOfOcurrencies);
+  const [paymentType, setPaymentType] = useState("");
+
+  const getOrderedCoffees = () => {
+    const orderedCoffees = coffees.filter((coffee) => coffee.newPrice);
+    return orderedCoffees ? orderedCoffees : [];
+  };
+
+  const selectPaymentType = (paymentName: string) => {
+    setPaymentType(paymentName);
+  };
+
+  const handleCloseOrder = () => {
+    const orderedCoffees = getOrderedCoffees().map(({ title, newPrice }) => ({
+      title: title,
+      price: newPrice?.toFixed(2),
+    }));
+
+    if (
+      cep &&
+      rua &&
+      numero &&
+      bairro &&
+      cidade &&
+      uf &&
+      paymentType &&
+      orderedCoffees
+    ) {
+      navigate("/success");
+      const finalOrder = {
+        cep,
+        rua,
+        numero,
+        bairro,
+        cidade,
+        uf,
+        paymentType,
+        orderedCoffees,
+      };
+
+      setFinalOrder(finalOrder);
+    }
+  };
+
   const paymentOptions = [
     {
       name: "Cartão de crédito",
@@ -61,9 +122,8 @@ export const Checkout = () => {
             <Text fontSizeText="14px">
               Informe o endereço onde deseja receber seu pedido
             </Text>
-            <form>
-              <FormContent />
-            </form>
+
+            <FormContent form={form} />
           </>
         </Card>
 
@@ -91,6 +151,7 @@ export const Checkout = () => {
                   variant={variantsOfButton.default}
                   padding="16px"
                   height="51px"
+                  onClick={() => selectPaymentType(payment.name)}
                 >
                   {payment.icon}
                   {payment.name}
@@ -101,9 +162,13 @@ export const Checkout = () => {
         </Card>
       </Box>
       <Box>
-
         <Text fontWeight="bold">Cafés selecionados</Text>
-        <CardProducts />
+        {!isEmpty(getOrderedCoffees()) && (
+          <CardProducts
+            products={getOrderedCoffees()}
+            closeOrder={handleCloseOrder}
+          />
+        )}
       </Box>
     </Flex>
   );

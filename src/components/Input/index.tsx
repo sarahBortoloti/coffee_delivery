@@ -1,28 +1,23 @@
-import { useState } from "react";
+import {
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+  useState,
+} from "react";
+import { UseFormRegister } from "react-hook-form";
 import { StyledInput } from "./styles";
 
-
-type InputStyleProps = {
-  width: string;
-}
-
-type InputProps = InputStyleProps & {
+export type InputProps = {
   id?: string;
-  type?: string;
-  placeholder?: string;
-  minValue?: number;
-  maxValue?: number;
-  minLength?: number;
-  maxLength?: number;
   name?: string;
-  onBlur?: () => void;
-  onChange?: () => void;
-  onFocus?: () => void;
-};
+  width?: string;
+} & Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "width"
+>;
 
-
-export const Input = ({ ...props }: InputProps) => {
-  return (
-    <StyledInput {...props} />
-  )
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ width, ...props }, ref) => {
+    return <StyledInput {...props} width={width} ref={ref} />;
+  }
+);
